@@ -1,0 +1,189 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://hrtest499li.azurewebsites.net/static/style.css">
+<link rel="stylesheet" href="style.css">
+    <title>Document Chat</title>
+</head>
+<body>
+   <div class="container-fluid p-0">
+    <div class="d-xl-flex d-lg-flex d-md-flex d-sm-flex d-xs-block">
+        <div class="col bg-color-1 p-0 left-nav">
+            <div class="logo d-flex justify-content-center align-items-center">
+                <img class="img-fluid w-auto" src="https://hrtest499li.azurewebsites.net/static/images/logo.png" alt="">
+
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                  </button> -->
+            </div>
+            <div class="navbar-expand-lg navbar-expand-md">
+                <div class="offcanvas offcanvas-start mobile-slide bg-color-1 " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <nav class="nav flex-column nav-design">
+                        <a href="{{ url_for('index') }}">
+                            <div class="nav-link" data-bs-toggle="pill" >Home</div>
+                        </a>
+                        <a href="#">
+                            <div class="nav-link" data-bs-toggle="pill" >Talent Acquisition</div>
+                        </a>
+                        <a href="#">
+                            <div class="nav-link" data-bs-toggle="pill" >Talent Development</div>
+                        </a>
+                        <a href="#">
+                            <div class="nav-link" data-bs-toggle="pill" >Talent Performances</div>
+                        </a>
+                        <a href="#">
+                            <div class="nav-link" data-bs-toggle="pill" >Talent Metrics</div>
+                        </a>
+                        <a href="{{ url_for('doc') }}">
+                            <div class="nav-link" data-bs-toggle="pill" >Document summarisation</div>
+                        </a>
+                        <a href="{{ url_for('athena_chat') }}">
+                            <div class="nav-link active" data-bs-toggle="pill" >Athena Chat</div>
+                        </a>
+                        <a href="#">
+                            <div class="nav-link" data-bs-toggle="pill" >Contact Us</div>
+                        </a>
+
+                    </nav>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col bg-img chatbot-section p-0">
+            <div class="col Athena-space d-flex align-items-center">
+                Document summarisation
+            </div>
+
+            <div class="add-new-file-button">
+                <button class="btn btn-primary button_file" id="add-new-file-btn" style ="margin-left: 900px;
+                background: #30494c;
+                border-color: black;">Replace File</button>
+            </div>
+            <div class="main-chat-section">
+                    {% if query_history %}
+                    <div id="query-history-container">
+                        {% for entry in query_history %}
+                            <div class="chat-cards m-auto">
+                                <div class="ques"><p>User: {{ entry['question'] }}</p></div>
+                                <div class="ans">
+                                    <p>{{ entry['answer'] | safe }}</p>
+                                </div>
+                            </div>
+
+                            {% if entry['answer_contains_list'] %}
+                                <!-- If the answer contains a list, display it as an unordered list -->
+                                <div class="ans-list" style="margin-left: 20px;">
+                                    <p>Chatbot's List Response:</p>
+                                    {{ entry['answer'] | safe }}
+                                </div>
+                            {% endif %}
+                        {% endfor %}
+
+                    </div>
+                {% endif %}
+            </div>
+
+                  <div class="m-auto" id="user-input-container">
+                      <form action="/process_file" method="post">
+                      <textarea id="user-input" name="user_input" placeholder="Type your message..."></textarea>
+                      <button type ="submit"><i class="fa fa-arrow-up" aria-hidden="true"></i></button>
+                      </form>
+                  </div>
+
+                  <br>
+
+            </div>
+        </div>
+    </div>
+   </div>
+   <script>
+            document.addEventListener("DOMContentLoaded", function () {
+            document.getElementById("add-new-file-btn").addEventListener("click", function () {
+                // Redirect user to doc.html
+                window.location.href = "{{ url_for('doc') }}";
+
+                // Perform backend work in app.py
+                // You can use fetch or other methods to send requests to your backend
+                // For example:
+                fetch("/replace_file", {
+                    method: "POST",
+                    body: JSON.stringify({}),
+                    headers: {
+                        "Content-Type": "application/json"
+                    }
+                })
+                .then(response => response.json())
+                .then(data => {
+                    console.log("Backend response:", data);
+                    // Handle backend response as needed
+                })
+                .catch(error => {
+                    console.error("Error performing backend work:", error);
+                    // Handle errors as needed
+                });
+            });
+        });
+    const userInput = document.getElementById('user-input');
+    const upperDiv = document.getElementById('upper-div');
+    const userInputContainer = document.getElementById('user-input-container');
+    const paddingHeight = 0; // 10px top padding + 10px bottom padding
+    const maxHeight = 150;
+
+    function scrollToBottom() {
+      debugger;
+      console.log('scrollToBottom function called');
+      var container = document.getElementById('query-history-container');
+      if (container != null){
+      container.scrollTop = container.scrollHeight;
+  }
+}
+
+  // Call scrollToBottom() after the page is loaded
+  window.onload = function () {
+      scrollToBottom();
+  };
+
+
+    userInput.addEventListener('input', function () {
+        userInput.style.height = 'auto';
+        var newHeight = Math.min(userInput.scrollHeight, maxHeight - paddingHeight);
+        if (newHeight > parseInt(userInput.style.height)) {
+            userInput.style.height = newHeight + 'px';
+            userInputContainer.style.height = userInput.style.height;
+            upperDiv.style.height = `calc(100% - ${userInputContainer.clientHeight}px)`;
+        } 
+    });
+    document.addEventListener("DOMContentLoaded", function () {
+        // Add an event listener to the "Save History" button
+        document.getElementById("send-email").addEventListener("click", function () {
+            // Send a request to the server to save chat history
+            fetch("/save_history", {
+                method: "POST",
+            })
+                .then(response => {
+                    if (!response.ok) {
+                        throw new Error("Network response was not ok");
+                    }
+                    return response.text();
+                })
+                .then(data => {
+                    console.log("Chat history saved:", data);
+                    // You can add any additional logic or UI updates here
+                })
+                .catch(error => {
+                    console.error("Error saving chat history:", error);
+                    // Handle errors as needed
+                });
+        });
+    });
+
+</script>
+</body>
+</html>

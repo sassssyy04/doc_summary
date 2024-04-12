@@ -1,0 +1,302 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="https://hrtest499li.azurewebsites.net/static/style.css">
+<link rel="stylesheet" href="style.css">
+    <title>Athena Chat</title>
+    <style>
+        #drop_zone {
+          border: 2px dashed #ccc;
+          border-radius: 5px;
+          padding: 100px;
+          min-height:250px;
+          text-align: center;
+          color: #ccc;
+          background: linear-gradient(to bottom, #12507f, black);
+          font-size: 20px;
+          width: 500px; /* Adjust the width as needed */
+          margin-top: 206px;
+          margin-left: 250px;
+        }
+        
+        #drop_zone.hover {
+          border-color: #333;
+          color: #333;
+        }
+        </style>
+</head>
+<body>
+   <div class="container-fluid p-0">
+    <div class="d-xl-flex d-lg-flex d-md-flex d-sm-flex d-xs-block">
+        <div class="col bg-color-1 p-0 left-nav">
+            <div class="logo d-flex justify-content-center align-items-center">
+                <img class="img-fluid w-auto" src="https://hrtest499li.azurewebsites.net/static/images/logo.png" alt="">
+
+                <!-- <button class="navbar-toggler" type="button" data-bs-toggle="offcanvas" data-bs-target="#offcanvasNavbar" aria-controls="offcanvasNavbar">
+                    <span class="navbar-toggler-icon"></span>
+                  </button> -->
+            </div>
+            <div class="navbar-expand-lg navbar-expand-md">
+                <div class="offcanvas offcanvas-start mobile-slide bg-color-1 " tabindex="-1" id="offcanvasNavbar" aria-labelledby="offcanvasNavbarLabel">
+                    <nav class="nav flex-column nav-design">
+                        <a href="{{ url_for('index') }}">
+                            <div class="nav-link" data-bs-toggle="pill" >Home</div>
+                        </a>
+                        <a href="#">
+                            <div class="nav-link" data-bs-toggle="pill" >Talent Acquisition</div>
+                        </a>
+                        <a href="#">
+                            <div class="nav-link" data-bs-toggle="pill" >Talent Development</div>
+                        </a>
+                        <a href="#">
+                            <div class="nav-link" data-bs-toggle="pill" >Talent Performances</div>
+                        </a>
+                        <a href="#">
+                            <div class="nav-link" data-bs-toggle="pill" >Talent Metrics</div>
+                        </a>
+                        <a href="#">
+                            <div class="nav-link" data-bs-toggle="pill" >HR Analytics</div>
+                        </a>
+                        <a href="{{ url_for('athena_chat') }}">
+                            <div class="nav-link active" data-bs-toggle="pill" >Athena Chat</div>
+                        </a>
+                        <a href="#">
+                            <div class="nav-link" data-bs-toggle="pill" >Contact Us</div>
+                        </a>
+
+                    </nav>
+                </div>
+            </div>
+
+
+        </div>
+        <div class="col bg-img chatbot-section p-0">
+            <div class="col Athena-space d-flex align-items-center">
+                Athena Chat
+            </div>
+            <div id="drop_zone" 
+     style="border: 2px dashed #ccc; padding: 20px; text-align: center;"
+     ondrop="handleDrop(event)"
+     ondragover="handleDragOver(event)">
+    <p style="margin-top:64px">Drop files here or</p>
+    <form id="upload" style="display: inline;">
+        <label for="file_input">choose file</label>
+        <input type="file" id="file_input" style="display: none;" onchange="handleFileSelect(event)">
+    </form>
+</div>
+            <!-- <div id="drop_zone" 
+     style="border: 2px dashed #ccc; padding: 20px; text-align: center;"
+     ondrop="handleDrop(event)"
+     ondragover="handleDragOver(event)">
+    Drop files here or
+    <form id="upload" style="display: inline;">
+        <label for="file_input">choose file</label>
+        <input type="file" id="file_input" style="display: none;" onchange="handleFileSelect(event)">
+    </form>
+</div> -->
+            <!-- <div id="drop_zone">
+                Drop files here
+                <from id="upload">
+                    <input type="file">choose file
+                </from>
+                </div> -->
+             
+
+
+                  <br>
+
+            </div>
+        </div>
+    </div>
+   </div>
+   <script>
+    var dropZone = document.getElementById('drop_zone');
+var fileInput = document.getElementById('file_input');
+
+// Optional: Highlight the drop zone on drag enter
+dropZone.addEventListener('dragenter', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.classList.add('hover');
+});
+
+dropZone.addEventListener('dragover', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+});
+
+// Optional: Remove highlight of the drop zone on drag leave
+dropZone.addEventListener('dragleave', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.classList.remove('hover');
+});
+
+function handleFileSelect(event) {
+    var files = event.target.files; // Array of all selected files
+
+    // Process the files here
+    for (var i = 0, file; file = files[i]; i++) {
+        console.log('Selected file:', file.name);
+        var athenaChatUrl = "{{ url_for('doc_chat') }}";
+
+// // Redirect to the Athena Chat page
+//         window.location.href = athenaChatUrl;
+
+        // Send the selected file to your backend (app.py) for processing
+        var formData = new FormData();
+        formData.append('file', file);
+
+        fetch('/process_file', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                // Redirect to another page if processing is successful
+                window.location.href = "{{ url_for('doc_chat') }}";
+            } else {
+                // Handle error response
+                console.error('Processing error');
+        }}).catch(error => {
+            console.error('Error:', error);
+        });
+    }
+}
+
+// Add change event listener to the file input
+fileInput.addEventListener('change', handleFileSelect);
+
+dropZone.addEventListener('drop', function (e) {
+    e.stopPropagation();
+    e.preventDefault();
+    this.classList.remove('hover');
+
+    var files = e.dataTransfer.files; // Array of all files
+
+
+    for (var i = 0, file; file = files[i]; i++) {
+        // Process the files here
+        console.log('Dropped file:', file.name);
+//         var athenaChatUrl = "{{ url_for('doc_chat') }}";
+
+// // Redirect to the Athena Chat page
+//         window.location.href = athenaChatUrl;
+
+        // Send the dropped file to your backend (app.py) for processing
+        var formData = new FormData();
+        formData.append('file', file);
+        fetch('/process_file', {
+            method: 'POST',
+            body: formData
+        }).then(response => {
+            if (response.ok) {
+                // Redirect to another page if processing is successful
+                window.location.href = "{{ url_for('doc_chat') }}";
+            } else {
+                // Handle error response
+                console.error('Processing error');
+        }}).catch(error => {
+            console.error('Error:', error);
+        });
+    }
+});
+
+//     var dropZone = document.getElementById('drop_zone');
+//     var fileInput = document.getElementById('file_input');
+
+//     // Optional: Highlight the drop zone on drag enter
+//     dropZone.addEventListener('dragenter', function (e) {
+//         e.stopPropagation();
+//         e.preventDefault();
+//         this.classList.add('hover');
+//     });
+
+//     dropZone.addEventListener('dragover', function (e) {
+//         e.stopPropagation();
+//         e.preventDefault();
+//     });
+
+//     // Optional: Remove highlight of the drop zone on drag leave
+//     dropZone.addEventListener('dragleave', function (e) {
+//         e.stopPropagation();
+//         e.preventDefault();
+//         this.classList.remove('hover');
+//     });
+//     function handleFileSelect(event) {
+//     var files = event.target.files; // Array of all selected files
+
+//     // Process the files here
+//     for (var i = 0, file; file = files[i]; i++) {
+//         console.log('Selected file:', file.name);
+//         // You can call a function to handle file upload
+
+//         // Get the URL for athena_chat route using Flask's url_for
+//         var athenaChatUrl = "{{ url_for('doc_chat') }}";
+
+//         // Redirect to the Athena Chat page
+//         window.location.href = athenaChatUrl;
+
+//         // Send the selected file to your backend (app.py) for processing
+//         // You can use XMLHttpRequest, fetch API, or any other method to send the file to your backend.
+//         // Example using fetch API:
+//         var formData = new FormData();
+//         formData.append('file', file);
+
+//         fetch('/process_file', {
+//             method: 'POST',
+//             body: formData
+//         }).then(response => {
+//             // Handle response from the server if needed
+//         }).catch(error => {
+//             console.error('Error:', error);
+//         });
+//     }
+// }
+
+// // Add change event listener to the file input
+// fileInput.addEventListener('change', handleFileSelect);
+
+
+//     dropZone.addEventListener('drop', function (e) {
+//         e.stopPropagation();
+//         e.preventDefault();
+//         this.classList.remove('hover');
+
+//         var files = e.dataTransfer.files; // Array of all files
+
+//         for (var i = 0, file; file = files[i]; i++) {
+//             // Process the files here
+//             console.log('Dropped file:', file.name);
+//             // You can call a function to handle file upload
+//                         // Get the URL for athena_chat route using Flask's url_for
+//             var athenaChatUrl = "{{ url_for('doc_chat') }}";
+
+// // Redirect to the Athena Chat page
+//             window.location.href = athenaChatUrl;
+
+//             // Send the dropped file to your backend (app.py) for processing
+//             // You can use XMLHttpRequest, fetch API, or any other method to send the file to your backend.
+//             // Example using fetch API:
+//             var formData = new FormData();
+//             formData.append('file', file);
+
+//             fetch('/process_file', {
+//                 method: 'POST',
+//                 body: formData
+//             }).then(response => {
+//                 // Handle response from the server if needed
+//             }).catch(error => {
+//                 console.error('Error:', error);
+//             });
+//         }
+//     });
+</script>
+
+</body>
+</html>

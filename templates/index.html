@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<link rel="stylesheet" href="http://127.0.0.1:7000/static/style2.css">
+    <title>LIama</title>
+</head>
+
+<body>
+<div class="container-fluid">
+    <div class="row">
+    <nav class="navbar navbar-expand-lg nav-custom">
+
+          <a class="navbar-brand navbar-nav me-auto" href="#">
+            <img class="img-fluid logo-w" src="http://127.0.0.1:7000/static/images/logo.png" alt="Logo">
+          </a>
+          <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+            <i class="fa fa-bars" aria-hidden="true"></i>
+          </button>
+
+            <div class="collapse navbar-collapse flex-row-reverse" id="navbarText">
+                <ul class="navbar-nav me-0 mb-2 mb-lg-0">
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link text-white  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Solutions </a>
+                        <ul class="dropdown-menu text-white bg-gradient-hover">
+                          <li><a class="dropdown-item" href="{{ url_for('athena_chat') }}"> HR Analytics</a></li>
+                          <li><a class="dropdown-item" href="{{ url_for('doc') }}"> Document Summarization</a></li>
+                          <li><a class="dropdown-item" href="#"> Multi-modal Document Summarization</a></li>
+                          <li><a class="dropdown-item" href="#"> Llama2 Use Cases (Industries)</a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link text-white  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Llama Positioning </a>
+                        <ul class="dropdown-menu text-white bg-gradient-hover">
+                          <li><a class="dropdown-item" href="#"> Comparative Analysis of LLMs</a></li>
+                          <li><a class="dropdown-item" href="#">Llama2 Advantages</a></li>
+                          <li><a class="dropdown-item" href="#">How to Choose LLM </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link text-white  dropdown-toggle" href="#" data-bs-toggle="dropdown">Llama2 Documentation </a>
+                        <ul class="dropdown-menu text-white bg-gradient-hover">
+                          <li><a class="dropdown-item" href="#"> LLM FAQs</a></li>
+                          <li><a class="dropdown-item" href="#"> Llama2 FAQs </a></li>
+                          <li><a class="dropdown-item" href="#"> Approach Notes </a></li>
+                          <li><a class="dropdown-item" href="#"> White Papers</a></li>
+                          <li><a class="dropdown-item" href="#"> Best Practices </a></li>
+                          <li><a class="dropdown-item" href="#"> Llama2 Blogs</a></li>
+                        </ul>
+                        
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link text-white  dropdown-toggle" href="#" data-bs-toggle="dropdown"> Fun with Llama2  </a>
+                        <ul class="dropdown-menu text-white bg-gradient-hover">
+                          <li><a class="dropdown-item" href="#"> Hackathon</a></li>
+                          <li><a class="dropdown-item" href="#"> Llama2 Events</a></li>
+                          <li><a class="dropdown-item" href="#"> Play with Llama2 </a></li>
+                          <li><a class="dropdown-item" href="#"> Converse with Quadwave on Llama2 </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item dropdown ">
+                        <a class="nav-link text-white  dropdown-toggle" href="#" data-bs-toggle="dropdown">  Learn Llama2 </a>
+                        <ul class="dropdown-menu text-white bg-gradient-hover">
+                          <li><a class="dropdown-item" href="#"> Videos </a></li>
+                          <li><a class="dropdown-item" href="#"> Submenu item 2 </a></li>
+                        </ul>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link text-white" href="#"> Contact Us </a> 
+                    </li>
+                </ul>
+            </div>
+
+      </nav>
+    </div>
+</div>
+<div class="container-fluid">
+    <div class="row">
+        <div class="bg-img">
+            <div class="container mt-5 pb-5">
+                <div class="col-xl-10 offset-xl-1 col-lg-12 offset-lg-0 col-md-12 col-sm-12 col-12 d-flex d-flex flex-column text-white">
+                    <div class="col-xl-12 col-lg-12 col-md-12 col-sm-12 col-12 mt-5">
+                        <h3>Innovative LLM solution with Meta’s Llama2- Look no-beyond </h3>
+                        <p>Quadwave focuses on providing AI & Gen AI consulting services for corporates. We, in association with Meta, provide customized solutions in LLM (Llama2, etc.) to our valued customers across different verticals. We believe in helping corporates explore Lalama2 capabilities and develop & refine LLM models to seamlessly integrate into the business applications.</p>
+                    </div>
+
+                    <div class="row pb-5 mt-5">
+                            <div class="col-xl-4 col-md-4 col-sm-4 col-12 d-flex">
+                                <div class="card card-custom text-white">
+                                    <img src="http://127.0.0.1:7000/static/images/icon-01.svg" alt="Icon1">
+                                    <p class="card-heading">Business Solutions in Llama2-Customized your Needs</p>
+                                    <p class="justify-text">We have a deep understanding of the unique requirements of Llama 2.0 AI and provide tailored solutions to meet the needs of different sectors.</p>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-md-4 col-sm-4 col-12 d-flex">
+                                <div class="card card-custom text-white">
+                                    <img src="http://127.0.0.1:7000/static/images/icon-02.svg" alt="Icon1">
+                                    <p class="card-heading">Learn Llama2- a <br> smooth Journey <br> with Us</p>
+                                    <p class="justify-text">We love to understand your end objectives & help crossing over the technical roadmap. </p>
+                                </div>
+                            </div>
+
+                            <div class="col-xl-4 col-md-4 col-sm-4 col-12 d-flex">
+                                <div class="card card-custom text-white">
+                                    <img src="http://127.0.0.1:7000/static/images/icon-03.svg" alt="Icon1">
+                                    <p class="card-heading">Reliable Support in Llama2-Technical <br>Know-how </p>
+                                    <p class="justify-text">We know technical difficulties and guide to zero-in. </p>
+                                </div>
+                            </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+</body>
+</html>

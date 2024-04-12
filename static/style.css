@@ -1,0 +1,220 @@
+body{
+    font-family: 'Poppins', sans-serif;
+    font-size: 14px;
+    margin: 0px;
+}
+:root{
+--bg-color-1: #000;
+--bg-color-2:#5D7D96;
+--color-white:#F9F9F9;
+--color-black:#000;
+--transition:all 0.5s;
+--box-border-color:#9E9E9E;
+}
+.text-color-white{
+    color: var(--color-white);
+}
+.bg-color-1{
+    background-color: var(--bg-color-1);
+}
+.logo{
+    height:68px;
+    background-color: black;
+}
+.logo img{
+    max-width:158px;
+}
+.left-nav{
+    max-width: 250px;
+}
+.chatbot-section{
+    background-color: var(--bg-color-2);
+}
+nav.nav-design{
+    height:calc(100vh - 68px);
+    padding: 20px;
+}
+nav a{
+    text-decoration: none;
+}
+nav.nav-design a .nav-link{
+    height:40px;
+    color: var(--color-white);
+    border-radius:7px;
+
+}
+nav.nav-design a .nav-link.active{
+    background-color: var(--color-white);
+    color:var(--color-black);
+    transition: var(--transition);
+}
+.chatbot-section .Athena-space{
+    height: 68px;
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--color-white);
+    padding: 0px 30px;
+}
+ 
+.main-chat-section {
+    display: flex;
+    flex-direction: column;
+    height: calc(100vh - 100px)
+}
+
+#query-history-container {
+    max-height: 600px;
+    margin-right: 180px;
+    overflow-y: auto; /* or overflow-y: scroll; */
+    /* ... other styles ... */
+}
+#upper-div {
+    flex-grow: 1;
+    overflow-y: auto;
+    padding: 10px;
+}
+.bg-img{
+    background: #000 url('https://hrtest499.azurewebsites.net/static/images/bgimage.png');
+    background-size: cover; /* Adjust as needed */
+    background-position: center; /* Adjust as needed */
+    background-repeat: no-repeat; /* Adjust as needed */
+    }
+#user-input-container {
+    margin-top: -84px !important;
+    margin-right: 386px !important;
+    margin: 20px auto; /* Center the user-input-container and add margin */
+    display: block; /* Change display to block */
+    background-color: var(--color-white);
+    padding: 10px;
+    max-height: 150px; /* Limit the maximum height */
+    max-width: 640px;
+    width: 100%;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+}
+button:hover {
+    background: linear-gradient(to right, #595656, #999696);
+    opacity: 0.7;
+  }
+#user-input-container button{
+    height: 34px;
+    /* width: 34px;  */
+    border: none;
+    background-color: #D4D4D4;
+    font-size: 18px;
+    border-radius: 7px;
+    vertical-align: bottom;
+}
+#user-input {
+    flex-grow: 1;
+    width: calc(100% - 55px);
+    box-sizing: border-box;
+    overflow-y: auto;
+    background-color: var(--color-white);
+    resize: none;
+    margin-right:20px;
+    border: none;
+    outline: none;
+    vertical-align: middle;
+   height:44px;
+}
+
+#emailHRForm {
+    float:right;
+    margin-right: 61px !important;
+    margin-top: -320px !important;
+    margin-bottom: 100px !important;
+    display: none;
+    max-width: 240px; /* Adjust the maximum width as needed */
+    margin: 20px auto; /* Center the emailHRForm and add margin */
+    padding: 20px;
+    background-color: #6c757d;
+    border-radius: 10px;
+    box-shadow: 0px 0px 6px rgba(0, 0, 0, 0.25);
+}
+
+#emailHRBody {
+    width: 100%; /* Make the textarea 100% width */
+    background: #6c757d;
+    border-width: 1px;
+    border-color: black;
+    min-height: 200px !important;
+    margin-top: 13px;
+    box-sizing: border-box;
+    min-height: 40px; /* Set a minimum height as needed */
+    resize: vertical; /* Allow vertical resizing */
+    margin-bottom: 15px; /* Add some bottom margin for spacing */
+}
+ul li {
+    color: white; /* Replace #ff0000 with your desired color code */
+}
+#send-email {
+    height: 60x;
+    border: none;
+    /* background-color: #D4D4D4; */
+    background: url('https://hrtest499.azurewebsites.net/static/images/paper-plane.png') no-repeat center center;
+
+    font-size: 18px;
+    border-radius: 7px;
+}
+
+
+    .chat-cards {
+    max-width: 640px;
+    padding-bottom: 25px;
+    display: flex;
+    flex-direction: column; /* Make the chat cards a column */
+}
+
+.ques {
+    padding: 8px;
+    border-radius: 20px 20px 0px 20px;
+    border: 1px solid rgba(158, 158, 158, 0.22);
+    background: var(--bg-color-1);
+    color: var(--color-white);
+    width: fit-content;
+    margin-bottom: 5px;
+    align-self: flex-end; /* Align User's queries to the right */
+}
+
+.ques p, .ans p {
+    margin: 10px 15px;
+}
+
+.ans {
+    padding: 8px;
+    border-radius: 20px 20px 20px 0px;
+    border: 1px solid var(--box-border-color);
+    background: #6c757d;
+    /* align-self: flex-start; Align Chatbot's answers to the left */
+}
+
+.ans p {
+    color: white;
+    text-align: justify;
+    line-height: normal;
+}
+/* width */
+.main-chat-section ::-webkit-scrollbar {
+     width: 5px; 
+  }
+
+  /* Track */
+  .main-chat-section ::-webkit-scrollbar-track {
+    background:transparent;
+  }
+
+  /* Handle */
+ .main-chat-section ::-webkit-scrollbar-thumb {
+    background: transparent;
+  }
+
+  /* Handle on hover */
+ .main-chat-section ::-webkit-scrollbar-thumb:hover {
+    background: transparent;
+  }
+  .close{
+    margin-left: 10px;
+    border:none;
+    background-color: #6c757d;
+  }

@@ -30,17 +30,22 @@ jobs:
       - name: Install dependencies
         run: pip install -r requirements.txt
         
+      - name: install open cv dependency
+        run: |
+          sudo apt update && sudo apt install libegl1 -y
+      
+      - name: Install dependencies
+        run: pip install -r requirements.txt
+        
       # Optional: Add step to run tests here (PyTest, Django test suites, etc.)
 
-      - name: Zip artifact for deployment
-        run: zip release.zip ./* -r
 
       - name: Upload artifact for deployment jobs
         uses: actions/upload-artifact@v3
         with:
           name: python-app
           path: |
-            release.zip
+            .
             !venv/
 
   deploy:
@@ -49,25 +54,19 @@ jobs:
     environment:
       name: 'Production'
       url: ${{ steps.deploy-to-webapp.outputs.webapp-url }}
-    permissions:
-      id-token: write #This is required for requesting the JWT
+
 
     steps:
       - name: Download artifact from build job
         uses: actions/download-artifact@v3
         with:
           name: python-app
+          path: .
 
-      - name: Unzip artifact for deployment
-        run: unzip release.zip
-
-      
-      - name: Login to Azure
+      - name: Log in to Azure CLI using service principal
         uses: azure/login@v1
         with:
-          client-id: ${{ secrets.AZUREAPPSERVICE_CLIENTID_B1FAF280577449A6B8B7C93E5EA6E015 }}
-          tenant-id: ${{ secrets.AZUREAPPSERVICE_TENANTID_B89EA7FA1FBB415892DA800DF912736C }}
-          subscription-id: ${{ secrets.AZUREAPPSERVICE_SUBSCRIPTIONID_1D565827B6E242E0B6CF140D18B09F7E }}
+          creds: ${{ secrets.AZURE_CREDENTIALS }}
 
       - name: 'Deploy to Azure Web App'
         uses: azure/webapps-deploy@v2
@@ -75,4 +74,4 @@ jobs:
         with:
           app-name: 'docsummary499'
           slot-name: 'Production'
-          
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_88D557E4E9CE475A9641415197E65843 }}
