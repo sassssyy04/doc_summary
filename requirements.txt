@@ -16,12 +16,8 @@ stack-data==0.5.0
 llama_index.embeddings.langchain
 llama-index-llms-langchain
 llama-index-embeddings-clip
-# git+https://github.com/openai/CLIP.git
 llama_index.llms.together
 IPython
 flask
 python-docx
-flask_mail
-azure-storage-blob
 PyPDF2
-shutil
